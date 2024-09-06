@@ -3,16 +3,16 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:44809",
-      "sslPort": 44324
+      "applicationUrl": "http://localhost:42267",
+      "sslPort": 44322
     }
   },
   "profiles": {
-    "WebLearnerApp": {
+    "Bincom_MVC_App": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,
-      "applicationUrl": "https://localhost:7197;http://localhost:5165",
+      "applicationUrl": "https://localhost:7001;http://localhost:5252",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }

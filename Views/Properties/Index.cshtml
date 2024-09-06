@@ -1,0 +1,19 @@
+﻿@using Ebele;
+@{
+    ViewData["Title"] = "Property Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome to Properties</h1>
+    <p>Our properties will be shown below</p>
+
+    <ul>
+    @foreach (Property property in Model) 
+        {
+            <li>
+                <strong>@property.Name</strong>
+            </li>
+        }
+    </ul>
+
+</div>
