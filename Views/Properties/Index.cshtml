@@ -6,14 +6,21 @@
 <div class="text-center">
     <h1 class="display-4">Welcome to Properties</h1>
     <p>Our properties will be shown below</p>
-
-    <ul>
+       
     @foreach (Property property in Model) 
-        {
-            <li>
-                <strong>@property.Name</strong>
-            </li>
-        }
-    </ul>
+    {
+        <div class="prop">
+            <h1>@property.Name</h1>
+            <p>@property.Id</p>
+            <p>@property.DateAdded</p>
+        </div>
+    }
+    
+    <h1>Search for a property by Id:</h1>
+    @using (Html.BeginForm("SingleProperty", "Properties", FormMethod.Post))
+    {
+        <input name="propertyId" value="0" />
+        <input type="submit" value="Find Property" />
+    }
 
 </div>

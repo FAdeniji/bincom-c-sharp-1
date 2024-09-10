@@ -1,4 +1,10 @@
+using Bincom_MVC_App.Data;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddDbContext<BincomContext>(options =>
+       options.UseSqlServer(builder.Configuration.GetValue<string>("ConnectionString:DefaultConnection")));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();

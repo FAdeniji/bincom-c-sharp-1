@@ -1,35 +1,51 @@
-﻿using Ebele;
+﻿using Bincom_MVC_App.Data;
+using Ebele;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
-using System.Text.Json.Serialization;
 
 namespace Bincom_MVC_App.Controllers
 {
     public class PropertiesController : Controller
     {
-        public List<Property> properties = new List<Property>()
+        public readonly BincomContext _dbConn;
+
+        public PropertiesController(BincomContext dbConn)
         {
-            new Property() { Id = 1, DateAdded = DateTime.Now, IsAvailable = true, Name = "Property 1" },
-            new Property() { Id = 2, DateAdded = DateTime.Now, IsAvailable = true, Name = "Property 2" },
-            new Property() { Id = 3, DateAdded = DateTime.Now, IsAvailable = true, Name = "Property 3" },
-        };
+            _dbConn = dbConn;
+        }
 
         public IActionResult Index()
         {
-            // ViewBag["properties"] = JsonConvert.SerializeObject(properties);
-
+            var properties = _dbConn.Properties.ToList(); 
             return View(properties);
         }
 
-        // Example method to get properties; replace this with your data fetching logic
-        private List<Property> GetProperties()
+        [HttpPost]
+        public async Task<IActionResult> SingleProperty(int propertyId)
         {
-            return properties;
-        }        
+            // fetch property from list of properties
+            var singleProperty = _dbConn.Properties
+                .Where(p => p.Id == propertyId)
+                .FirstOrDefault();
 
-        public IActionResult FetchSingleProperty(int id)
+            // return the property as a model in the view
+            return View(singleProperty);
+        }
+
+        // Return Take Home After Tax#
+        //private double ReturnTakeHomeAfterTax(double salary) => salary - 5000;
+        private double ReturnTakeHomeAfterTax(double salary)
         {
-            return View();
+            return salary - 5000;
+        }
+
+        private double ReturnTakeHomeAfterTax(int salary)
+        {
+            return salary - 5000;
+        }
+
+        private double ReturnTakeHomeAfterTax(float salary)
+        {
+            return salary - 5000;
         }
     }
 }
